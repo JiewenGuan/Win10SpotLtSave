@@ -28,7 +28,7 @@ def save(name):
     im=Image.open("./static/"+name)
     path = SAVEPATH+name
     im=im.save(path)
-    return name
+    return name + " saved to " + SAVEPATH 
 
 if __name__ == "__main__":
     app.run(debug=True)
