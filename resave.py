@@ -1,7 +1,7 @@
 from getpass import getuser
 from flask import Flask, render_template
 from PIL import Image
-import glob, os, os.path
+import glob, os, os.path, webbrowser
 app = Flask(__name__)
 
 USERNAME = getuser()
@@ -29,6 +29,9 @@ def save(name):
     path = SAVEPATH+name
     im=im.save(path)
     return name + " saved to " + SAVEPATH 
+
+webbrowser.open('http://127.0.0.1:5000/')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
