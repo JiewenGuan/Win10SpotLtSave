@@ -1,0 +1,15 @@
+<!DOCTYPE=html>
+<html>
+<head>
+    <title>
+        Store Report
+    </title>
+</head>
+<body>
+    {% for img in image_list %}
+    <a href="{{ url_for('save', name=img.split('static/')[1]) }}">
+    <img src="{{ img }}">
+    </a>
+    {% endfor %}
+</body>
+</html>`
