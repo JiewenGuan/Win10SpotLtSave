@@ -1,11 +1,11 @@
-USERNAME = "heiye"
-SAVEPATH = "C:/Users/heiye/OneDrive/background/"
-
-
+from getpass import getuser
 from flask import Flask, render_template
 from PIL import Image
 import glob, os, os.path
 app = Flask(__name__)
+
+USERNAME = getuser()
+SAVEPATH = "C:/Users/"+USERNAME+"/OneDrive/background/"
 
 @app.route("/")
 def main():
