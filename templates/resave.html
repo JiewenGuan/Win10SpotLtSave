@@ -2,8 +2,13 @@
 <html>
 <head>
     <title>
-        Store Report
+        Image Resave
     </title>
+    {% if DoubleOpen %}
+        <script>
+            window.close();
+        </script>
+    {% endif %}
 </head>
 <body>
     {% for img in image_list %}
