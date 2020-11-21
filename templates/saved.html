@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Image Resave
+        </title>
+            <script>
+                setTimeout(function() {
+                    window.close();
+                }, {{ waittime }});
+            </script>
+    </head>
+    <body style="text-align: center;">
+        <img src="/static/{{ name }}" alt="{{ name }}" style="width:50%"> <br>
+        {{name}} is saved to {{savepath}}
+    </body>
+</html>

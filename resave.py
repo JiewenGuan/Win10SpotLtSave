@@ -5,9 +5,12 @@ import glob, os, os.path, webbrowser
 from threading import Thread
 from time import sleep
 app = Flask(__name__)
-
+URL = 'http://127.0.0.1:5000/'
+#BROWSER can be set to 'edge', 'chrome', 'firefox'
+BROWSER = 'chrome'
 USERNAME = getuser()
 SAVEPATH = "C:/Users/"+USERNAME+"/OneDrive/background/"
+WAITETIME = 1500
 if not os.path.exists(SAVEPATH):
     os.makedirs(SAVEPATH)
 
@@ -47,11 +50,15 @@ def save(name):
     im=Image.open("./static/"+name)
     path = SAVEPATH+name
     im=im.save(path)
-    return name + " saved to " + SAVEPATH 
+    return render_template('saved.html', name = name, savepath = SAVEPATH, waittime = WAITETIME) 
 
 #webbrowser.open has a bug that opens the link twice
-webbrowser.open('http://127.0.0.1:5000/')
-
+#webbrowser.open('http://127.0.0.1:5000/')
+if(BROWSER != 'edge'):
+    BROWSER+=" "
+else:
+    BROWSER="microsoft-edge:"
+os.system('powershell.exe start '+BROWSER+URL)
 
 if __name__ == "__main__":
     app.run(debug=True)
