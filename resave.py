@@ -8,6 +8,8 @@ app = Flask(__name__)
 
 USERNAME = getuser()
 SAVEPATH = "C:/Users/"+USERNAME+"/OneDrive/background/"
+if not os.path.exists(SAVEPATH):
+    os.makedirs(SAVEPATH)
 
 global USERCOUNT
 USERCOUNT = 0
