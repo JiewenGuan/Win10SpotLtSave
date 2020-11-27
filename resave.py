@@ -1,4 +1,3 @@
-from getpass import getuser
 from flask import Flask, render_template
 from PIL import Image
 import glob, os, os.path, webbrowser
@@ -8,9 +7,9 @@ app = Flask(__name__)
 URL = 'http://127.0.0.1:5000/'
 #BROWSER can be set to 'edge', 'chrome', 'firefox'
 BROWSER = 'chrome'
-USERNAME = getuser()
+USERNAME = os.getlogin()
 SAVEPATH = "C:/Users/"+USERNAME+"/OneDrive/background/"
-WAITETIME = 1500
+WAITETIME = 1000
 if not os.path.exists(SAVEPATH):
     os.makedirs(SAVEPATH)
 
