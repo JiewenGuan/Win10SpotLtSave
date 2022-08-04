@@ -1,8 +1,8 @@
  # installation<br />
- #install python
+ #install python<br />
  $ ./install.ps1
  # how to
- to launch the server
+ to launch the server<br />
  $ powershell ./resave.ps1
 
  click to save the image you want <br />
