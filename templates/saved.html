@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            Image Resave
-        </title>
-            <script>
-                setTimeout(function() {
-                    window.close();
-                }, {{ waittime }});
-            </script>
-    </head>
-    <body style="text-align: center;">
-        <img src="/static/{{ name }}" alt="{{ name }}" style="width:50%"> <br>
-        {{name}} is saved to {{savepath}}
-    </body>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Template" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="William Guan" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+    <title>
+        Image Resave
+    </title>
+    <script>
+        setTimeout(function () {
+            window.close();
+        }, {{ waittime }});
+    </script>
+</head>
+
+<body>
+    <img src="{{ '/static/'+name }}" alt="{{ name }}"  width="50%" height="auto"/> <br/>
+    {{ name }} is saved to {{ savepath }}
+</body>
+
 </html>

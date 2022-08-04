@@ -1,8 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 from PIL import Image
-import glob, os, os.path, webbrowser
+import glob, os, os.path
 from threading import Thread
 from time import sleep
+
 app = Flask(__name__)
 URL = 'http://127.0.0.1:5000/'
 #BROWSER can be set to 'edge', 'chrome', 'firefox'
@@ -26,9 +27,8 @@ def main():
     global USERCOUNT
     if(USERCOUNT == 0):
         USERCOUNT+=1
-        filelist = glob.glob(os.path.join("/static/", "*.jpg"))
-        for f in filelist:
-            os.remove(f)
+        if not os.path.exists('static'):
+            os.mkdir('static')
         image_list = []
         for filename in glob.glob('C:/Users/'+USERNAME+'/AppData/Local/Packages/Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy/LocalState/Assets/*'): 
             im=Image.open(filename)
@@ -51,6 +51,18 @@ def save(name):
     im=im.save(path)
     return render_template('saved.html', name = name, savepath = SAVEPATH, waittime = WAITETIME) 
 
+@app.route("/static/<name>")
+def static_file(name):
+    return send_from_directory('static', name)
+
+@app.route('/shutdown', methods=['GET'])
+def shutdown():
+    with os.scandir('static/') as dir:
+        for file in dir:
+            os.remove(file.path)
+    os._exit(0)
+ 
+
 #webbrowser.open has a bug that opens the link twice
 #webbrowser.open('http://127.0.0.1:5000/')
 if(BROWSER != 'edge'):
@@ -61,3 +73,4 @@ os.system('powershell.exe start '+BROWSER+URL)
 
 if __name__ == "__main__":
     app.run(debug=True)
+

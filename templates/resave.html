@@ -1,68 +1,95 @@
-<!DOCTYPE=html>
-<html>
-<head>
-    <title>
-        Image Resave
-    </title>
-    {% if DoubleOpen %}
+<!DOCTYPE =html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="Template" />
+        <meta name="keywords" content="HTML, CSS, JavaScript" />
+        <meta name="author" content="William Guan" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <title>Image Resave</title>
+        {% if DoubleOpen %}
         <script>
             window.close();
         </script>
-    {% endif %}
-    <style>
-        .container {
-          position: relative;
-          width: 90%;
-        }
-        
-        .image {
-          opacity: 1;
-          display: block;
-          width: 100%;
-          height: auto;
-          transition: .5s ease;
-          backface-visibility: hidden;
-        }
-        
-        .middle {
-          transition: .5s ease;
-          opacity: 0;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          -ms-transform: translate(-50%, -50%);
-          text-align: center;
-        }
-        
-        .container:hover .image {
-          opacity: 0.9;
-        }
-        
-        .container:hover .middle {
-          opacity: 1;
-        }
-        
-        .text {
-          background-color: lightskyblue;
-          color: black;
-          font-size: 16px;
-          padding: 16px 32px;
-        }
+        {% else %}
+        <script>
+            window.addEventListener("beforeunload", function () {
+                let xhr = new XMLHttpRequest();
+                //open a get request with the remote server URL
+                xhr.open(
+                    "GET",
+                    "{{ url_for('shutdown') }}"
+                );
+                //send the Http request
+                xhr.send();
+            });
+        </script>
+        {% endif %}
+        <style>
+            .container {
+                position: relative;
+                width: 90%;
+            }
+
+            .image {
+                opacity: 1;
+                display: block;
+                width: 100%;
+                height: auto;
+                transition: 0.5s ease;
+                backface-visibility: hidden;
+            }
+
+            .middle {
+                transition: 0.5s ease;
+                opacity: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                text-align: center;
+            }
+
+            .container:hover .image {
+                opacity: 0.9;
+            }
+
+            .container:hover .middle {
+                opacity: 1;
+            }
+
+            .text {
+                background-color: lightskyblue;
+                color: black;
+                font-size: 16px;
+                padding: 16px 32px;
+            }
         </style>
-</head>
-<body>
-    {% for img in image_list %}
-    <div class="container">
-        <a href="{{ url_for('save', name=img.split('static/')[1]) }}" target="_blank">
-        <img src="{{ img }}" alt="{{ img }}" class="image" style="width:100%">
-        <div class="middle">
-          <div class="text">SAVE</div>
+    </head>
+    <body>
+        {% for img in image_list %}
+        <div class="container">
+            <a
+                href="{{ url_for('save', name=img.split('static/')[1]) }}"
+                target="_blank"
+            >
+                <img
+                    src="{{ img }}"
+                    alt="{{ img }}"
+                    class="image"
+                    width="100%"
+                    height="100%"
+                />
+                <div class="middle">
+                    <div class="text">SAVE</div>
+                </div>
+            </a>
         </div>
-    </a>
-    </div>
-    
-    
-    {% endfor %}
-</body>
-</html>`
+        {% endfor %}
+    </body>
+</html>
+`
