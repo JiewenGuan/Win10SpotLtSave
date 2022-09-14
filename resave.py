@@ -1,3 +1,4 @@
+#beforeunload dont work, change to keep alive instead
 from flask import Flask, render_template, send_from_directory
 from PIL import Image
 import glob, os, os.path
@@ -7,7 +8,7 @@ from time import sleep
 app = Flask(__name__)
 URL = 'http://127.0.0.1:5000/'
 #BROWSER can be set to 'edge', 'chrome', 'firefox'
-BROWSER = 'chrome'
+BROWSER = 'edge'
 USERNAME = os.getlogin()
 SAVEPATH = "C:/Users/"+USERNAME+"/OneDrive/background/"
 WAITETIME = 1000
