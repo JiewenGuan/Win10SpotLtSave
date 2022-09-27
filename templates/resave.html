@@ -23,7 +23,7 @@
                 );
                 //send the Http request
                 xhr.send();
-                setTimeout("window.close();",1000)
+                setTimeout("window.close();",500)
             }
             window.addEventListener("beforeunload", exitProgram);
         </script>
@@ -70,7 +70,7 @@
             }
 
             #side {
-                position: absolute;
+                position: fixed;
                 right: 0;
                 top: 0;
                 width: auto;
