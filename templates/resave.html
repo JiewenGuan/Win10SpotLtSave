@@ -1,14 +1,12 @@
-<!DOCTYPE =html>
-<html lang="en">
+<!DOCTYPE=html>
+    <html lang="en">
+
     <head>
         <meta charset="utf-8" />
         <meta name="description" content="Template" />
         <meta name="keywords" content="HTML, CSS, JavaScript" />
         <meta name="author" content="William Guan" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>Image Resave</title>
         {% if DoubleOpen %}
         <script>
@@ -16,7 +14,7 @@
         </script>
         {% else %}
         <script>
-            window.addEventListener("beforeunload", function () {
+            function exitProgram() {
                 let xhr = new XMLHttpRequest();
                 //open a get request with the remote server URL
                 xhr.open(
@@ -25,7 +23,9 @@
                 );
                 //send the Http request
                 xhr.send();
-            });
+                setTimeout("window.close();",1000)
+            }
+            window.addEventListener("beforeunload", exitProgram);
         </script>
         {% endif %}
         <style>
@@ -68,28 +68,35 @@
                 font-size: 16px;
                 padding: 16px 32px;
             }
+
+            #side {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: auto;
+                height: auto;
+                background-color: red;
+                color: white;
+            }
         </style>
     </head>
+
     <body>
-        {% for img in image_list %}
-        <div class="container">
-            <a
-                href="{{ url_for('save', name=img.split('static/')[1]) }}"
-                target="_blank"
-            >
-                <img
-                    src="{{ img }}"
-                    alt="{{ img }}"
-                    class="image"
-                    width="100%"
-                    height="100%"
-                />
-                <div class="middle">
-                    <div class="text">SAVE</div>
-                </div>
-            </a>
+        <div id="side" onclick="exitProgram()">关闭/EXIT</div>
+        <div id="main">
+            {% for img in image_list %}
+            <div class="container">
+                <a href="{{ url_for('save', name=img.split('static/')[1]) }}" target="_blank">
+                    <img src="{{ img }}" alt="{{ img }}" class="image" width="100%" height="100%" />
+                    <div class="middle">
+                        <div class="text">SAVE</div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+
     </body>
-</html>
-`
+
+    </html>
+    `
